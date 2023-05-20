@@ -1,0 +1,57 @@
+// Название файла: bloggingApp.js
+
+class User {
+  constructor(name, email) {
+    this.name = name;
+    this.email = email;
+  }
+}
+
+class Post {
+  constructor(title, content, author) {
+    this.title = title;
+    this.content = content;
+    this.author = author;
+    this.comments = [];
+  }
+
+  addComment(comment) {
+    this.comments.push(comment);
+  }
+
+  displayPost() {
+    console.log('Post:');
+    console.log(`Title: ${this.title}`);
+    console.log(`Author: ${this.author.name} (${this.author.email})`);
+    console.log('Content:');
+    console.log(this.content);
+    console.log('Comments:');
+    this.comments.forEach((comment) => {
+      console.log(`- ${comment.author.name} (${comment.author.email}): ${comment.text}`);
+    });
+  }
+}
+
+class Comment {
+  constructor(text, author) {
+    this.text = text;
+    this.author = author;
+  }
+}
+
+// Пример использования классов User, Post и Comment:
+const user1 = new User('John Doe', 'john@example.com');
+const user2 = new User('Jane Smith', 'jane@example.com');
+
+const post1 = new Post('My First Blog Post', 'This is the content of my first blog post.', user1);
+const post2 = new Post('JavaScript Tips and Tricks', 'Here are some useful JavaScript tips and tricks.', user2);
+
+const comment1 = new Comment('Great post!', user1);
+const comment2 = new Comment('Thanks for sharing!', user2);
+
+post1.addComment(comment1);
+post2.addComment(comment2);
+
+post1.displayPost();
+console.log('-----------------');
+post2.displayPost();
